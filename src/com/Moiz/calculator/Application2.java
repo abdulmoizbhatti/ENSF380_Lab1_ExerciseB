@@ -18,8 +18,9 @@ public class Application2 {
 		boolean running = true;
 		Scanner scanner = new Scanner(System.in);
 		
-		//this block of code is for command line arguments rather than user input
+		//using while loop to keep programming going until exited
 		while(running) {
+			//this block of code is for command line arguments rather than user input
 			if (args.length > 0) {
 				String operation = args[0].toLowerCase();
 				switch(operation) {
@@ -129,6 +130,15 @@ public class Application2 {
 	                    System.out.println("Error, invalid number of arguments.");
 	                }
 	                break;
+	            case "permutation":
+                    if (args.length == 3) {
+                        int totalElements = Integer.parseInt(args[1]);
+                        int selectedElements = Integer.parseInt(args[2]);
+                        System.out.println("Result: " + permutation(totalElements, selectedElements));
+                    } else {
+                        System.out.println("Error, invalid number of arguments.");
+                    }
+                    break;
 				default:
 					System.out.println("Error: Invalid operation.");
 					
@@ -141,8 +151,10 @@ public class Application2 {
 		else {
 					
 		 // asking user for type of operation
-		System.out.println("Enter operation (eg., add, subtract, multiply, divide, factorial, power, root, natural log, base-10 log, sin, cosine, tangent, or 'exit' to quit):");
+		System.out.println("Enter operation (eg., add, subtract, multiply, divide, factorial, power, root, natural log, base-10 log, sin, cosine, tangent, permutation, or 'exit' to quit):");
 		String operation = scanner.next();
+		
+		//exiting the program
 		
 		if (operation.equalsIgnoreCase("exit")) {
             running = false;
@@ -228,6 +240,13 @@ public class Application2 {
             System.out.println("Enter the angle in degrees:");
             double tanAngle = scanner.nextDouble();
             System.out.println("Result: " + tan(tanAngle));
+            break;
+        case "permutation":
+            System.out.println("Enter the total number of elements:");
+            int totalElements = scanner.nextInt();
+            System.out.println("Enter the number of elements to be selected:");
+            int selectedElements = scanner.nextInt();
+            System.out.println("Result: " + permutation(totalElements, selectedElements));
             break;
 		default:
 			System.out.println("Error: Invalid operation.");
@@ -326,8 +345,30 @@ public static double cos(double angleDegrees) {
 public static double tan(double angleDegrees) {
 	return Math.tan(Math.toRadians(angleDegrees));
  }
+
+
+public static long permutation(int totalElements, int selectedElements) {
+ if (totalElements < 0) {
+     System.out.println("Error: Total number of elements cannot be less than zero.");
+     return 0;
+ }
+ if (selectedElements < 0 || selectedElements > 100) {
+     System.out.println("Error: Number of elements to be selected must be between 0 and 100.");
+     return 0;
+ }
+ if (selectedElements > totalElements) {
+     System.out.println("Error: Number of selected elements cannot exceed the total number of elements.");
+     return 0;
+ }
+ return permutationHelper(totalElements, selectedElements);
 }
 
+private static long permutationHelper(int totalElements, int selectedElements) {
+ if (selectedElements == 0) {
+     return 1;
+ }
+ return totalElements * permutationHelper(totalElements - 1, selectedElements - 1);
+}
 
-
+}
 
