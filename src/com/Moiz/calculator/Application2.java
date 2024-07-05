@@ -1,6 +1,6 @@
 /*
  * File Name: Application2.java
- * Assignment: Lab 1, Exercise C,B,E
+ * Assignment: Lab 1, Exercise C,D,E
  * Completed by: Moiz Bhatti
  * Submission Date: July 4th, 2023
  */
@@ -13,11 +13,13 @@ import java.util.Scanner;
 
 public class Application2 {
 
-	
+	 
 	public static void main(String[] args) {
+		//this block of code is for command line arguments rather than user input
 		if (args.length > 0) {
 			String operation = args[0].toLowerCase();
 			switch(operation) {
+			// different pathways depending on which operand is called in the command line argument
 			case "add":
 				if(args.length == 3) {
 					double addnum1= Double.parseDouble(args[1]);
@@ -71,12 +73,17 @@ public class Application2 {
 				}
 			}
 				
-			
+	// this block of code is for using user input rather than command line arguments
 	 else {
+		 // asking user for type of operation
 		Scanner scanner = null;
 		scanner = new Scanner(System.in);
 		System.out.println("Enter operation (eg., add, subtract, multiply, divide, factorial):");
 		String operation = scanner.next();
+		
+		/* taking the type of operation the user inputs and asking the numbers they want to use
+		 * and calling the method for calculation and returning the result
+		 */
 		
 		switch (operation.toLowerCase()) {
 		case "add":
@@ -127,11 +134,17 @@ public class Application2 {
 	}
 	
 }
+
+/* This block of code is where all the methods/functions are to do the actual operations
+ * They receive double values and return the proper result
+ */
 	
+//method for receiving 2 double numbers and returning the addition
 public static double add(double a , double b) {
 	return a + b ;
 }
-		
+
+//method for receiving a double number and returning the factorial
 public static double factorial ( double n ) {
 	if ( n <= 1) {
 		return 1;
@@ -140,14 +153,17 @@ public static double factorial ( double n ) {
 		 }
 	}
 	
+//method for receiving 2 double numbers and returning the subtraction
 public static double subtraction(double a, double b) {
 	return a - b;
 }
 
+//method for receiving 2 double numbers and returning the multiplication
 public static double multiply(double a, double b) {
 	return a * b;
 }
 
+//method for receiving 2 double numbers and returning the division
 public static double divide(double a, double b) {
 	return a / b;
 	
